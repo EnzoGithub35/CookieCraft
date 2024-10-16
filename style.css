@@ -1,0 +1,110 @@
+body {
+    font-family: 'Press Start 2P', cursive; /* Minecraft-style font */
+    background: url('img/bg_mc5.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    text-align: center;
+}
+
+.container {
+    display: inline-block;
+    background: url('img/bg_div1.jpg') no-repeat center center fixed;
+    background-color: #8B4513; /* Wood color */
+    padding: 20px;
+    border: 5px solid darkgreen; /* Sand color */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add some shadow for depth */
+}
+
+#cookie {
+    width: 170px;
+    cursor: pointer;
+}
+
+#clicker {
+    background-color: #8B4513; /* Wood color */
+    color: #FFF;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#clicker:hover {
+    background-color: #A0522D; /* Lighter wood color */
+}
+
+#counter {
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+.upgrade {
+    background-color: #8B4513; /* Wood color */
+    color: #FFF;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.upgrade:hover {
+    background-color: #A0522D; /* Lighter wood color */
+}
+
+.reset-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #8B4513; /* Wood color */
+    color: #FFF;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.reset-button:hover {
+    background-color: #A0522D; /* Lighter wood color */
+}
+
+.container-farm {
+    background: url('img/bg_div1.jpg') no-repeat center center fixed;
+    position: absolute;
+    top: 10px;
+    right: 10%;
+    width: 200px;
+    background-color: #8B4513; /* Wood color */
+    padding: 20px;
+    border: 5px solid #D2B48C; /* Sand color */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add some shadow for depth */
+}
+
+.container-ressource {
+    background: url('img/bg_div1.jpg') no-repeat center center fixed;
+    position: absolute;
+    top: 10px;
+    left: 10%;
+    width: 200px;
+    background-color: #8B4513; /* Wood color */
+    padding: 20px;
+    border: 5px solid #D2B48C; /* Sand color */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add some shadow for depth */
+}
+
+.claim-btn {
+    background-color: #8B4513;
+    position: absolute;
+    top: 40%;
+    right: 1%;
+    color: #FFF;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
