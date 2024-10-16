@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     multiplierCounterDisplay.textContent = multiplierCount;
     autoclickerCostDisplay.textContent = `Cout : ${autoclickerCost}`;
     autoclickerCounterDisplay.textContent = autoclickerCount;
+    cacao.textContent = cacaoStorage
 
 
 
@@ -110,8 +111,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     claimFarm.addEventListener('click', () => {
-
-
+        cacaoStorage += milkPointStorage
+        milkPointStorage -= milkPointStorage
+        localStorage.setItem('milkFarmPoint', milkPointStorage);
+        localStorage.setItem('cacao', cacaoStorage);
     });
 
     setInterval(() => {
