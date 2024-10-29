@@ -1,18 +1,18 @@
 class Game {
     constructor() {
-        const initialMultiplierCost = 10;
-        const initialAutocliquerCost = 10;
+        const initialMultiplierCost = 20;
+        const initialAutocliquerCost = 25;
         const initialCacaoFarmCost = 10;
         const initialWheatFarmCost = 15;
         const initialEggFarmCost = 20;
-        const initialUpgradeSpeedCost = 50;
+        const initialUpgradeSpeedCost = 200;
 
         this.bonuses = {
             "multiplier": { cost: initialMultiplierCost, nb: 1 },
             "autocliquer": { cost: initialAutocliquerCost, nb: 0 },
-            "cacaoFarm": { cost: initialCacaoFarmCost, nb: 0, production: 0 },
-            "wheatFarm": { cost: initialWheatFarmCost, nb: 0, production: 0 },
-            "eggFarm": { cost: initialEggFarmCost, nb: 0, production: 0 }
+            "cacaoFarm": { cost: initialCacaoFarmCost, nb: 0, production: 1 },
+            "wheatFarm": { cost: initialWheatFarmCost, nb: 0, production: 2 },
+            "eggFarm": { cost: initialEggFarmCost, nb: 0, production: 3 }
         };
         this.resources = {
             "cacao": 0,
@@ -56,12 +56,12 @@ class Game {
     }
 
     load() {
-        const initialMultiplierCost = 10;
-        const initialAutocliquerCost = 10;
+        const initialMultiplierCost = 20;
+        const initialAutocliquerCost = 25;
         const initialCacaoFarmCost = 10;
         const initialWheatFarmCost = 15;
         const initialEggFarmCost = 20;
-        this.clicks = localStorage.getItem('game.clicks') ? parseInt(localStorage.getItem('game.clicks')) : 0;
+        this.clicks = localStorage.getItem('game.clicks') ? parseInt(localStorage.getItem('game.clicks')) : 999999999;
         this.bonuses.multiplier.nb = localStorage.getItem('game.multiplier') ? parseInt(localStorage.getItem('game.multiplier')) : 1;
         this.bonuses.multiplier.cost = localStorage.getItem('game.multiplierCost') ? parseInt(localStorage.getItem('game.multiplierCost')) : initialMultiplierCost * Math.pow(1.15, this.bonuses.multiplier.nb - 1);
         this.bonuses.autocliquer.nb = localStorage.getItem('game.autocliquer') ? parseInt(localStorage.getItem('game.autocliquer')) : 0;
@@ -82,7 +82,7 @@ class Game {
         this.resources.cacaoFarmPoint = localStorage.getItem('game.cacaoFarmPoint') ? parseInt(localStorage.getItem('game.cacaoFarmPoint')) : 0;
         this.resources.wheatFarmPoint = localStorage.getItem('game.wheatFarmPoint') ? parseInt(localStorage.getItem('game.wheatFarmPoint')) : 0;
         this.resources.eggFarmPoint = localStorage.getItem('game.eggFarmPoint') ? parseInt(localStorage.getItem('game.eggFarmPoint')) : 0;
-        this.upgradeSpeedCost = localStorage.getItem('game.upgradeSpeedCost') ? parseInt(localStorage.getItem('game.upgradeSpeedCost')) : 50;
+        this.upgradeSpeedCost = localStorage.getItem('game.upgradeSpeedCost') ? parseInt(localStorage.getItem('game.upgradeSpeedCost')) : 4000;
         this.autoClickerInterval = localStorage.getItem('game.autoClickerInterval') ? parseInt(localStorage.getItem('game.autoClickerInterval')) : 1000;
     }
 
@@ -96,11 +96,11 @@ class Game {
                 this.resources.cacaoFarmPoint += this.bonuses.cacaoFarm.production;
             }
             if (item === 'wheatFarm') {
-                this.bonuses.wheatFarm.production += 1;
+                this.bonuses.wheatFarm.production += 2;
                 this.resources.wheatFarmPoint += this.bonuses.wheatFarm.production;
             }
             if (item === 'eggFarm') {
-                this.bonuses.eggFarm.production += 1;
+                this.bonuses.eggFarm.production += 3;
                 this.resources.eggFarmPoint += this.bonuses.eggFarm.production;
             }
             this.save();
@@ -140,12 +140,39 @@ class Game {
         this.label_eggFarm_nb.textContent = `production de egg : ${this.bonuses.eggFarm.nb}`;
         this.label_eggPoint.textContent = `egg : ${this.resources.eggFarmPoint}`;
 
-        this.label_upgradeSpeed_cost.textContent = `Cout : ${this.upgradeSpeedCost}`;
+        if (this.clicks >= 100 || this.bonuses.autocliquer.nb >= 1) {
+            this.btn_autoclicker.style.display = 'inline-block';
+            this.label_autoclicker_cost.textContent = `Cout : ${this.bonuses.autocliquer.cost}`;
+        } else {
+            this.btn_autoclicker.style.display = 'none';
+            this.label_autoclicker_cost.textContent = '';
+        }
+
+        if (this.clicks >= 1000 || this.bonuses.cacaoFarm.nb >= 1 || this.bonuses.wheatFarm.nb >= 1 || this.bonuses.eggFarm.nb >= 1) {
+            this.container.style.display = 'inline-block';
+            this.container_farm.style.display = 'inline-block';
+            this.btn_claimFarm.style.display = 'inline-block';
+        } else {
+            this.container.style.display = 'none';
+            this.container_farm.style.display = 'none';
+            this.btn_claimFarm.style.display = 'none';
+        }
+
+        if (this.clicks >= 10000 || this.autoClickerInterval <= 999) {
+            this.btn_upgradeSpeed.style.display = 'inline-block';
+            this.label_upgradeSpeed_cost.textContent = `Cout : ${this.upgradeSpeedCost}`;
+        } else {
+            this.btn_upgradeSpeed.style.display = 'none';
+            this.label_upgradeSpeed_cost.textContent = '';
+        }
     }
 
     initDOMElements() {
         this.img_cookie = document.getElementById('cookie');
         this.label_counter = document.getElementById('counter');
+
+        this.container = document.getElementById('container');
+        this.container_farm = document.getElementById('container-farm');
 
         this.btn_multiplier = document.getElementById('multiplier');
         this.label_multiplier_cost = document.getElementById('multiplierCost');
@@ -182,6 +209,17 @@ class Game {
     }
 
     loadEvents() {
+        
+        // Bouton Reset
+        // (ne marche plus lorsqu'il y a l'upgrade speed trop élevé...)
+        document.getElementById('reset').addEventListener('click', () => {
+            localStorage.clear();
+            localStorage.clear();
+   
+            
+            location.reload();
+            location.reload();
+        });
         this.img_cookie.addEventListener('click', () => { this.click(); });
         this.btn_multiplier.addEventListener('click', () => { this.buy('multiplier'); this.paint(); });
         this.btn_autoclicker.addEventListener('click', () => { this.buy('autocliquer'); this.paint(); });
@@ -191,10 +229,7 @@ class Game {
         this.btn_claimFarm.addEventListener('click', () => { this.claimFarm(); this.paint(); });
         this.btn_craft.addEventListener('click', () => { this.craft(); });
         this.btn_upgradeSpeed.addEventListener('click', () => { this.reduceAutoClickerInterval(); this.paint(); });
-        document.getElementById('reset').addEventListener('click', () => {
-            localStorage.clear();
-            location.reload();
-        });
+
     }
 
     claimFarm() {
@@ -212,7 +247,7 @@ class Game {
     craft() {
         const minResource = Math.min(this.resources.cacao, this.resources.wheat, this.resources.egg);
         if (minResource > 0) {
-            this.clicks += minResource * 2;
+            this.clicks += minResource * 10;
             this.resources.cacao -= minResource;
             this.resources.wheat -= minResource;
             this.resources.egg -= minResource;
@@ -222,6 +257,9 @@ class Game {
             alert("Vous n'avez pas assez de ressources pour crafter !");
         }
     }
+
+    
+
 
     startAutoClicker() {
         this.autoClicker = setInterval(() => {
@@ -237,18 +275,24 @@ class Game {
     reduceAutoClickerInterval() {
         if (this.clicks >= this.upgradeSpeedCost) {
             this.clicks -= this.upgradeSpeedCost;
-            this.upgradeSpeedCost *= 2; // Increase the cost for the next upgrade
+            this.upgradeSpeedCost = Math.floor(this.upgradeSpeedCost * 1.6); // Increase the cost for the next upgrade
             clearInterval(this.autoClicker);
-            this.autoClickerInterval = Math.max(100, this.autoClickerInterval - 100); // Decrease interval, minimum 100ms
+            this.autoClickerInterval = Math.max(50, this.autoClickerInterval / 1.5); // Decrease interval, minimum 50ms
             this.startAutoClicker();
             this.paint();
         } else {
             alert("Vous n'avez pas assez de points pour acheter cette amélioration !");
         }
     }
+
+    
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
     const game = new Game();
     game.startAutoClicker();
+
+
+
+    
 });
