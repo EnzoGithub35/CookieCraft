@@ -61,7 +61,7 @@ class Game {
         const initialCacaoFarmCost = 10;
         const initialWheatFarmCost = 15;
         const initialEggFarmCost = 20;
-        this.clicks = localStorage.getItem('game.clicks') ? parseInt(localStorage.getItem('game.clicks')) : 999999999;
+        this.clicks = localStorage.getItem('game.clicks') ? parseInt(localStorage.getItem('game.clicks')) : 0;
         this.bonuses.multiplier.nb = localStorage.getItem('game.multiplier') ? parseInt(localStorage.getItem('game.multiplier')) : 1;
         this.bonuses.multiplier.cost = localStorage.getItem('game.multiplierCost') ? parseInt(localStorage.getItem('game.multiplierCost')) : initialMultiplierCost * Math.pow(1.15, this.bonuses.multiplier.nb - 1);
         this.bonuses.autocliquer.nb = localStorage.getItem('game.autocliquer') ? parseInt(localStorage.getItem('game.autocliquer')) : 0;
@@ -84,7 +84,9 @@ class Game {
         this.resources.eggFarmPoint = localStorage.getItem('game.eggFarmPoint') ? parseInt(localStorage.getItem('game.eggFarmPoint')) : 0;
         this.upgradeSpeedCost = localStorage.getItem('game.upgradeSpeedCost') ? parseInt(localStorage.getItem('game.upgradeSpeedCost')) : 4000;
         this.autoClickerInterval = localStorage.getItem('game.autoClickerInterval') ? parseInt(localStorage.getItem('game.autoClickerInterval')) : 1000;
+
     }
+
 
     buy(item) {
         if (this.clicks >= this.bonuses[item].cost) {
@@ -103,11 +105,16 @@ class Game {
                 this.bonuses.eggFarm.production += 3;
                 this.resources.eggFarmPoint += this.bonuses.eggFarm.production;
             }
+            if (item === 'autocliquer') {
+                clearInterval(this.autoClicker);
+                this.startAutoClicker();
+            }
             this.save();
         } else {
             alert(`vous n'avez pas assez de points pour acheter un ${item}!`);
         }
     }
+    
 
     click() {
         this.clicks += this.bonuses.multiplier.nb;
@@ -117,29 +124,30 @@ class Game {
 
     paint() {
         this.label_counter.textContent = this.clicks;
-
+    
         this.label_multiplier_cost.textContent = `Cout : ${this.bonuses.multiplier.cost}`;
-        this.label_multiplier_nb.textContent = this.bonuses.multiplier.nb;
-
+        this.label_multiplier_nb.textContent = `multiplier : ${this.bonuses.multiplier.nb}`;
+    
         this.label_autoclicker_cost.textContent = `Cout : ${this.bonuses.autocliquer.cost}`;
-        this.label_autoclicker_nb.textContent = this.bonuses.autocliquer.nb;
-
+        this.label_autoclicker_nb.textContent = `autocliquer : ${this.bonuses.autocliquer.nb}`;
+    
         this.label_cacaoFarm_cost.textContent = `Cout : ${this.bonuses.cacaoFarm.cost}`;
-        this.label_cacaoFarm_nb.textContent = `production de cacao : ${this.bonuses.cacaoFarm.nb}`;
-        this.label_cacaoPoint.textContent = `cacao : ${this.resources.cacaoFarmPoint}`;
-
-        this.label_cacao.textContent = `cacao : ${this.resources.cacao}`;
-        this.label_wheat.textContent = `wheat : ${this.resources.wheat}`;
-        this.label_egg.textContent = `oeuf : ${this.resources.egg}`;
-
+        this.label_cacaoFarm_nb.textContent = `cacao farm : ${this.bonuses.cacaoFarm.nb}`;
+        this.label_cacaoPoint.innerHTML = `<img src="img/cacao.png" alt="cacao" style="width:20px;height:20px;"> ${this.resources.cacaoFarmPoint}`;
+    
+        this.label_cacao.innerHTML = `<img src="img/cacao.png" alt="cacao" style="width:20px;height:20px;"> ${this.resources.cacao}`;
+        this.label_wheat.innerHTML = `<img src="img/wheat.png" alt="wheat" style="width:20px;height:20px;"> ${this.resources.wheat}`;
+        this.label_egg.innerHTML = `<img src="img/egg.png" alt="oeuf" style="width:20px;height:20px;"> ${this.resources.egg}`;
+    
         this.label_wheatFarm_cost.textContent = `Cout : ${this.bonuses.wheatFarm.cost}`;
-        this.label_wheatFarm_nb.textContent = `production de wheat : ${this.bonuses.wheatFarm.nb}`;
-        this.label_wheatPoint.textContent = `wheat : ${this.resources.wheatFarmPoint}`;
-
+        this.label_wheatFarm_nb.textContent = `wheat farm : ${this.bonuses.wheatFarm.nb}`;
+        this.label_wheatPoint.innerHTML = ` <img src="img/wheat.png" alt="wheat" style="width:20px;height:20px;"> ${this.resources.wheatFarmPoint}`;
+    
         this.label_eggFarm_cost.textContent = `Cout : ${this.bonuses.eggFarm.cost}`;
-        this.label_eggFarm_nb.textContent = `production de egg : ${this.bonuses.eggFarm.nb}`;
-        this.label_eggPoint.textContent = `egg : ${this.resources.eggFarmPoint}`;
-
+        this.label_eggFarm_nb.textContent = `egg farm : ${this.bonuses.eggFarm.nb}`;
+        this.label_eggPoint.innerHTML = `<img src="img/egg.png" alt="oeuf" style="width:20px;height:20px;"> ${this.resources.eggFarmPoint}`;
+        this.btn_upgradeSpeed.textContent = `upgrade speed : ${Math.floor(this.autoClickerInterval)} ms`
+    
         if (this.clicks >= 100 || this.bonuses.autocliquer.nb >= 1) {
             this.btn_autoclicker.style.display = 'inline-block';
             this.label_autoclicker_cost.textContent = `Cout : ${this.bonuses.autocliquer.cost}`;
@@ -147,24 +155,30 @@ class Game {
             this.btn_autoclicker.style.display = 'none';
             this.label_autoclicker_cost.textContent = '';
         }
-
+    
         if (this.clicks >= 1000 || this.bonuses.cacaoFarm.nb >= 1 || this.bonuses.wheatFarm.nb >= 1 || this.bonuses.eggFarm.nb >= 1) {
-            this.container.style.display = 'inline-block';
-            this.container_farm.style.display = 'inline-block';
-            this.btn_claimFarm.style.display = 'inline-block';
+            document.getElementById('container-farm').style.display = 'inline-block';
+            document.getElementById('container-ressource').style.display = 'inline-block';
         } else {
-            this.container.style.display = 'none';
-            this.container_farm.style.display = 'none';
-            this.btn_claimFarm.style.display = 'none';
+            document.getElementById('container-farm').style.display = 'none';
+            document.getElementById('container-ressource').style.display = 'none';
+        }
+    
+        if (this.clicks >= 10000 || this.autoClickerInterval <= 999) {
+            document.getElementById('upgradeSpeed').style.display = 'inline-block';
+            document.getElementById('upgradeSpeedCost').textContent = `Cout : ${this.upgradeSpeedCost}`;
+        } else {
+            document.getElementById('upgradeSpeed').style.display = 'none';
+            document.getElementById('upgradeSpeedCost').textContent = '';
         }
 
-        if (this.clicks >= 10000 || this.autoClickerInterval <= 999) {
-            this.btn_upgradeSpeed.style.display = 'inline-block';
-            this.label_upgradeSpeed_cost.textContent = `Cout : ${this.upgradeSpeedCost}`;
+        if (this.autoClickerInterval <= 50) {
+            document.getElementById('upgradeSpeed').style.display = 'none';
+            this.label_upgradeSpeed_cost.innerHTML = `vitesse de l'autocliqueur : ${this.autoClickerInterval} <br> la vitesse maximale a été atteinte.`;
         } else {
-            this.btn_upgradeSpeed.style.display = 'none';
-            this.label_upgradeSpeed_cost.textContent = '';
+            this.label_upgradeSpeed_cost.textContent = `vitesse de l'autocliqueur : ${this.autoClickerInterval}`;
         }
+
     }
 
     initDOMElements() {
@@ -206,30 +220,91 @@ class Game {
         this.btn_craft = document.getElementById('craft');
         this.btn_upgradeSpeed = document.getElementById('upgradeSpeed');
         this.label_upgradeSpeed_cost = document.getElementById('upgradeSpeedCost');
+        this.cookie = document.getElementById('cookie');
+        this.fallingCookiesContainer = document.getElementById('falling-cookies-container');
+        this.anvilSound = new Audio('music/anvil.mp3');
+        this.chestSound = new Audio('music/chest.mp3');
+        this.pickSound = new Audio('music/pick.mp3');
     }
 
     loadEvents() {
-        
-        // Bouton Reset
-        // (ne marche plus lorsqu'il y a l'upgrade speed trop élevé...)
         document.getElementById('reset').addEventListener('click', () => {
             localStorage.clear();
-            localStorage.clear();
-   
-            
-            location.reload();
             location.reload();
         });
-        this.img_cookie.addEventListener('click', () => { this.click(); });
-        this.btn_multiplier.addEventListener('click', () => { this.buy('multiplier'); this.paint(); });
-        this.btn_autoclicker.addEventListener('click', () => { this.buy('autocliquer'); this.paint(); });
-        this.btn_cacaoFarm.addEventListener('click', () => { this.buy('cacaoFarm'); this.paint(); });
-        this.btn_wheatFarm.addEventListener('click', () => { this.buy('wheatFarm'); this.paint(); });
-        this.btn_eggFarm.addEventListener('click', () => { this.buy('eggFarm'); this.paint(); });
-        this.btn_claimFarm.addEventListener('click', () => { this.claimFarm(); this.paint(); });
-        this.btn_craft.addEventListener('click', () => { this.craft(); });
-        this.btn_upgradeSpeed.addEventListener('click', () => { this.reduceAutoClickerInterval(); this.paint(); });
 
+        this.img_cookie.addEventListener('click', () => { 
+            this.click(); 
+            this.createFallingCookie();
+            this.playPickSound();
+        });
+
+        this.btn_multiplier.addEventListener('click', () => { 
+            this.buy('multiplier'); 
+            this.paint(); 
+        });
+
+        this.btn_autoclicker.addEventListener('click', () => { 
+            this.buy('autocliquer'); 
+            this.paint(); 
+        });
+
+        this.btn_cacaoFarm.addEventListener('click', () => { 
+            this.buy('cacaoFarm'); 
+            this.paint(); 
+        });
+
+        this.btn_wheatFarm.addEventListener('click', () => { 
+            this.buy('wheatFarm'); 
+            this.paint(); 
+        });
+
+        this.btn_eggFarm.addEventListener('click', () => { 
+            this.buy('eggFarm'); 
+            this.paint(); 
+        });
+
+        this.btn_claimFarm.addEventListener('click', () => { 
+            this.claimFarm(); 
+            this.paint(); 
+            this.playChestSound();
+        });
+
+        this.btn_craft.addEventListener('click', () => { 
+            this.craft(); 
+            this.playAnvilSound();
+        });
+
+        this.btn_upgradeSpeed.addEventListener('click', () => { 
+            this.reduceAutoClickerInterval(); 
+            this.paint(); 
+        });
+    }
+    playAnvilSound() {
+        this.anvilSound.play();
+    }
+
+    playChestSound() {
+        this.chestSound.play();
+    }
+
+    playPickSound() {
+        this.pickSound.play();
+    }
+
+    createFallingCookie(isMini = false) {
+        const cookie = document.createElement('div');
+        cookie.classList.add('cookie-fall');
+        if (isMini) {
+            cookie.style.width = '15px';
+            cookie.style.height = '15px';
+        }
+        cookie.style.left = `${Math.random() * 90}vw`;
+        this.fallingCookiesContainer.appendChild(cookie);
+
+        setTimeout(() => {
+            cookie.remove();
+        }, 2000);
     }
 
     claimFarm() {
@@ -262,24 +337,34 @@ class Game {
 
 
     startAutoClicker() {
-        this.autoClicker = setInterval(() => {
-            this.clicks += this.bonuses.autocliquer.nb;
-            this.resources.cacaoFarmPoint += this.bonuses.cacaoFarm.production;
-            this.resources.wheatFarmPoint += this.bonuses.wheatFarm.production;
-            this.resources.eggFarmPoint += this.bonuses.eggFarm.production;
-            this.paint();
-            this.save();
-        }, this.autoClickerInterval);
+        if (this.bonuses.autocliquer.nb >= 1) {
+            this.autoClicker = setInterval(() => {
+                this.clicks += this.bonuses.autocliquer.nb;
+                this.resources.cacaoFarmPoint += this.bonuses.cacaoFarm.production;
+                this.resources.wheatFarmPoint += this.bonuses.wheatFarm.production;
+                this.resources.eggFarmPoint += this.bonuses.eggFarm.production;
+                this.paint();
+                this.save();
+                this.createFallingCookie(true); // Crée des mini cookies
+            }, this.autoClickerInterval);
+        }
     }
-
     reduceAutoClickerInterval() {
         if (this.clicks >= this.upgradeSpeedCost) {
             this.clicks -= this.upgradeSpeedCost;
-            this.upgradeSpeedCost = Math.floor(this.upgradeSpeedCost * 1.6); // Increase the cost for the next upgrade
+            this.upgradeSpeedCost = Math.floor(this.upgradeSpeedCost * 1.6);
             clearInterval(this.autoClicker);
-            this.autoClickerInterval = Math.max(50, this.autoClickerInterval / 1.5); // Decrease interval, minimum 50ms
-            this.startAutoClicker();
-            this.paint();
+            if (this.autoClickerInterval >= 50) {
+                this.autoClickerInterval = Math.max(50, this.autoClickerInterval / 1.4)
+                this.startAutoClicker();
+                this.paint();
+            } 
+            // if (this.autoClickerInterval <= 50) {
+            //     this.btn_upgradeSpeed.style.display = 'none';
+            //     // this.btn_upgradeSpeed.style.cursor = 'not-allowed';
+            //     // alert("Vous avez atteint la vitesse maximale !");
+            // }
+
         } else {
             alert("Vous n'avez pas assez de points pour acheter cette amélioration !");
         }

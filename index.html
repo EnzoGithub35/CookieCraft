@@ -8,51 +8,93 @@
 </head>
 <body>
     <button id="reset" class="reset-button">Reset</button>
-    <div  class="container">
-        <img id="cookie" src="img/cookie.png" alt="Cookie" draggable="false">
-        <p id="counter">0</p>
-            <button class="upgrade" id="multiplier">Multiplier</button>
-            <p id="multiplierCost">Cout : 20</p>
-            <p id="multiplierCounter">1</p>
-            <button class="upgrade" id="autoclicker">Autoclicker</button>
-            <p id="autoclickerCost">Cout : 20</p>
-            <p id="autoclickerCounter">0</p>
-            <button class="upgrade" id="upgradeSpeed">Upgrade Speed</button>
-            <p id="upgradeSpeedCost">Cout : 50</p>
+    <div class="main-container">
+        <div class="container-cookie">
+            <img id="cookie" src="img/cookie.png" alt="Cookie" draggable="false">
+            <p id="counter">0</p>
+        </div>
+        <div id="falling-cookies-container"></div>
+        <div class="container-upgrade">
+            <button id="multiplier" class="button-82-pushable">
+                <span class="button-82-shadow"></span>
+                <span class="button-82-edge"></span>
+                <span class="button-82-front text">
+                    <div id="multiplierCounter"></div>
+                </span>
+            </button>
+            <p id="multiplierCost"></p>
+
+            <button id="autoclicker" class="button-82-pushable">
+                <span class="button-82-shadow"></span>
+                <span class="button-82-edge"></span>
+                <span class="button-82-front text">
+                    <div id="autoclickerCounter"></div>
+                </span>
+            </button>
+            <p id="autoclickerCost"></p>
+
+            <button id="upgradeSpeed" class="button-82-pushable">
+                <span class="button-82-shadow"></span>
+                <span class="button-82-edge"></span>
+                <span class="button-82-front text">
+                    <div id="autoClickerInterval"></div>
+                </span>
+            </button>
+            <p id="upgradeSpeedCost"></p>
+        </div>
+        <div id="container-farm" class="container-farm">
+            <button id="cacaoFarm" class="button-82-pushable">
+                <span class="button-82-shadow"></span>
+                <span class="button-82-edge"></span>
+                <span class="button-82-front text">
+                    <div id="cacaoFarmCounter"></div>
+                </span>
+            </button>
+            <p id="cacaoFarmPoint">cacao :</p>
+            <p id="cacaoFarmCost">Cout : 5</p>
+
+            <button id="wheatFarm" class="button-82-pushable">
+                <span class="button-82-shadow"></span>
+                <span class="button-82-edge"></span>
+                <span class="button-82-front text">
+                    <div id="wheatFarmCounter"></div>
+                </span>
+            </button>
+            <p id="wheatFarmPoint">Wheat :</p>
+            <p id="wheatFarmCost">Cout : </p>
+
+            <button id="eggFarm" class="button-82-pushable">
+                <span class="button-82-shadow"></span>
+                <span class="button-82-edge"></span>
+                <span class="button-82-front text">
+                    <div id="eggFarmCounter"></div>
+                </span>
+            </button>
+            <p id="eggFarmPoint">Egg :</p>
+            <p id="eggFarmCost">Cout : </p>
+
+            <button id="claim-btn" class="button-82-pushable">
+                <span class="button-82-shadow"></span>
+                <span class="button-82-edge"></span>
+                <span class="button-82-front text">
+                    reclaim
+                </span>
+            </button>
+        </div>
+        <div id="container-ressource" class="container-ressource">
+            <p id="cacao">cacao : 0</p>
+            <p id="wheat">wheat : 0</p>
+            <p id="egg">oeuf : 0</p>
+
+            <button id="craft" class="iconBtn craft-button" mdTooltipPosition="above" mdTooltip="Sync User" (click)="sync()">
+                <img class="syncRotate" src="img/craft.png" alt="Craft" draggable="false">
+            </button>
+        </div>
     </div>
-
-    <div  id="container"  class="container-farm">
-        <button class="upgrade" id="cacaoFarm">Cacao Farm</button>
-        <p id="cacaoFarmPoint">cacao :</p>
-        <p id="cacaoFarmCost">Cout : 5</p>
-        <p id="cacaoFarmCounter">production de cacao :</p>
-
-        <button class="upgrade" id="wheatFarm">Wheat Farm</button>
-        <p id="wheatFarmPoint">Wheat :</p>
-        <p id="wheatFarmCost">Cout : </p>
-        <p id="wheatFarmCounter">production de wheat :</p>
-        <button class="upgrade" id="eggFarm">Egg Farm</button>
-        <p id="eggFarmPoint">Egg :</p>
-        <p id="eggFarmCost">Cout : </p>
-        <p id="eggFarmCounter">production de egg :</p>
-    </div>
-    <div>
-        <button class="claim-btn" id="claim-btn">reclaim</button>
-    </div>
-
-    <div id="container-farm" class="container-ressource">
-        <p id="cacao">cacao : 0</p>
-        <p id="wheat">wheat : 0</p>
-        <p id="egg">oeuf : 0</p>
-
-        <button id="craft" class="craft-button">
-            <img src="img/craft.png" alt="Craft" draggable="false">
-        </button>
-
-    </div>
-
-
-    
     <script src="script2.js"></script>
+    <script src="particles.js"></script>
+    <script src="app.js"></script>
+    
+    
 </body>
 </html>

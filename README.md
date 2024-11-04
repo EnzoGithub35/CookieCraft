@@ -3,6 +3,12 @@
 ## Description
 Ce projet est une version personnalisée du célèbre jeu Cookie Clicker, avec un thème Minecraft. Le but du jeu est de cliquer sur un cookie pour gagner des points et acheter des améliorations qui augmentent votre production de points.
 
+## Vidéo de Présentation
+<video width="600" controls>
+  <source src="video/cookie_craft.mp4" type="video/mp4">
+  Votre navigateur ne supporte pas la balise vidéo.
+</video>
+
 ## Fonctionnalités
 - **Clique sur le cookie** : Cliquez sur le cookie pour gagner des points.
 - **Améliorations** : Achetez des améliorations telles que des multiplicateurs, des autoclickers, et des fermes (cacao, blé, œuf) pour augmenter votre production de points.
@@ -32,5 +38,3 @@ Ce projet est une version personnalisée du célèbre jeu Cookie Clicker, avec u
 
 ## Auteur
 - Enzo R.
-
-
