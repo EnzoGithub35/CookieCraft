@@ -61,7 +61,7 @@ class Game {
         const initialCacaoFarmCost = 10;
         const initialWheatFarmCost = 15;
         const initialEggFarmCost = 20;
-        this.clicks = localStorage.getItem('game.clicks') ? parseInt(localStorage.getItem('game.clicks')) : 0;
+        this.clicks = localStorage.getItem('game.clicks') ? parseInt(localStorage.getItem('game.clicks')) : 9999999;
         this.bonuses.multiplier.nb = localStorage.getItem('game.multiplier') ? parseInt(localStorage.getItem('game.multiplier')) : 1;
         this.bonuses.multiplier.cost = localStorage.getItem('game.multiplierCost') ? parseInt(localStorage.getItem('game.multiplierCost')) : initialMultiplierCost * Math.pow(1.15, this.bonuses.multiplier.nb - 1);
         this.bonuses.autocliquer.nb = localStorage.getItem('game.autocliquer') ? parseInt(localStorage.getItem('game.autocliquer')) : 0;
@@ -84,7 +84,7 @@ class Game {
         this.resources.eggFarmPoint = localStorage.getItem('game.eggFarmPoint') ? parseInt(localStorage.getItem('game.eggFarmPoint')) : 0;
         this.upgradeSpeedCost = localStorage.getItem('game.upgradeSpeedCost') ? parseInt(localStorage.getItem('game.upgradeSpeedCost')) : 4000;
         this.autoClickerInterval = localStorage.getItem('game.autoClickerInterval') ? parseInt(localStorage.getItem('game.autoClickerInterval')) : 1000;
-
+    
     }
 
 
@@ -175,10 +175,20 @@ class Game {
         if (this.autoClickerInterval <= 50) {
             document.getElementById('upgradeSpeed').style.display = 'none';
             this.label_upgradeSpeed_cost.innerHTML = `vitesse de l'autocliqueur : ${this.autoClickerInterval} <br> la vitesse maximale a été atteinte.`;
-        } else {
-            this.label_upgradeSpeed_cost.textContent = `vitesse de l'autocliqueur : ${this.autoClickerInterval}`;
         }
+        this.rulesButton.addEventListener('click', () => {
+            this.rulesPopup.style.display = 'block';
+        });
 
+        this.closePopup.addEventListener('click', () => {
+            this.rulesPopup.style.display = 'none';
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target == this.rulesPopup) {
+                this.rulesPopup.style.display = 'none';
+            }
+        });
     }
 
     initDOMElements() {
@@ -225,6 +235,10 @@ class Game {
         this.anvilSound = new Audio('music/anvil.mp3');
         this.chestSound = new Audio('music/chest.mp3');
         this.pickSound = new Audio('music/pick.mp3');
+        this.rulesButton = document.getElementById('rules');
+        this.rulesPopup = document.getElementById('rules-popup');
+        this.closePopup = document.querySelector('.close');
+  
     }
 
     loadEvents() {

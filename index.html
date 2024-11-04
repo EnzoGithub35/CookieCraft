@@ -8,93 +8,118 @@
 </head>
 <body>
     <button id="reset" class="reset-button">Reset</button>
-    <div class="main-container">
-        <div class="container-cookie">
-            <img id="cookie" src="img/cookie.png" alt="Cookie" draggable="false">
-            <p id="counter">0</p>
+    <button id="rules" class="rules-button">Règles</button>
+    <div class="grid-container">
+        <div class="container-cookie test_box">
+            <div class="inner">
+                <img id="cookie" src="img/cookie.png" alt="Cookie" draggable="false">
+                <p id="counter">0</p>
+            </div>
         </div>
         <div id="falling-cookies-container"></div>
-        <div class="container-upgrade">
-            <button id="multiplier" class="button-82-pushable">
-                <span class="button-82-shadow"></span>
-                <span class="button-82-edge"></span>
-                <span class="button-82-front text">
-                    <div id="multiplierCounter"></div>
-                </span>
-            </button>
-            <p id="multiplierCost"></p>
+        <div class="container-upgrade test_box">
+            <div class="inner">
+                <button id="multiplier" class="button-82-pushable">
+                    <span class="button-82-shadow"></span>
+                    <span class="button-82-edge"></span>
+                    <span class="button-82-front text">
+                        <div id="multiplierCounter"></div>
+                    </span>
+                </button>
+                <p id="multiplierCost"></p>
 
-            <button id="autoclicker" class="button-82-pushable">
-                <span class="button-82-shadow"></span>
-                <span class="button-82-edge"></span>
-                <span class="button-82-front text">
-                    <div id="autoclickerCounter"></div>
-                </span>
-            </button>
-            <p id="autoclickerCost"></p>
+                <button id="autoclicker" class="button-82-pushable">
+                    <span class="button-82-shadow"></span>
+                    <span class="button-82-edge"></span>
+                    <span class="button-82-front text">
+                        <div id="autoclickerCounter"></div>
+                    </span>
+                </button>
+                <p id="autoclickerCost"></p>
 
-            <button id="upgradeSpeed" class="button-82-pushable">
-                <span class="button-82-shadow"></span>
-                <span class="button-82-edge"></span>
-                <span class="button-82-front text">
-                    <div id="autoClickerInterval"></div>
-                </span>
-            </button>
-            <p id="upgradeSpeedCost"></p>
+                <button id="upgradeSpeed" class="button-82-pushable">
+                    <span class="button-82-shadow"></span>
+                    <span class="button-82-edge"></span>
+                    <span class="button-82-front text">
+                        <div id="autoClickerInterval"></div>
+                    </span>
+                </button>
+                <p id="upgradeSpeedCost"></p>
+            </div>
         </div>
-        <div id="container-farm" class="container-farm">
-            <button id="cacaoFarm" class="button-82-pushable">
-                <span class="button-82-shadow"></span>
-                <span class="button-82-edge"></span>
-                <span class="button-82-front text">
-                    <div id="cacaoFarmCounter"></div>
-                </span>
-            </button>
-            <p id="cacaoFarmPoint">cacao :</p>
-            <p id="cacaoFarmCost">Cout : 5</p>
+        <div id="container-farm" class="container-farm test_box">
+            <div class="inner">
+                <button id="cacaoFarm" class="button-82-pushable">
+                    <span class="button-82-shadow"></span>
+                    <span class="button-82-edge"></span>
+                    <span class="button-82-front text">
+                        <div id="cacaoFarmCounter"></div>
+                    </span>
+                </button>
+                <p id="cacaoFarmPoint">cacao :</p>
+                <p id="cacaoFarmCost">Cout : 5</p>
 
-            <button id="wheatFarm" class="button-82-pushable">
-                <span class="button-82-shadow"></span>
-                <span class="button-82-edge"></span>
-                <span class="button-82-front text">
-                    <div id="wheatFarmCounter"></div>
-                </span>
-            </button>
-            <p id="wheatFarmPoint">Wheat :</p>
-            <p id="wheatFarmCost">Cout : </p>
+                <button id="wheatFarm" class="button-82-pushable">
+                    <span class="button-82-shadow"></span>
+                    <span class="button-82-edge"></span>
+                    <span class="button-82-front text">
+                        <div id="wheatFarmCounter"></div>
+                    </span>
+                </button>
+                <p id="wheatFarmPoint">Wheat :</p>
+                <p id="wheatFarmCost">Cout : </p>
 
-            <button id="eggFarm" class="button-82-pushable">
-                <span class="button-82-shadow"></span>
-                <span class="button-82-edge"></span>
-                <span class="button-82-front text">
-                    <div id="eggFarmCounter"></div>
-                </span>
-            </button>
-            <p id="eggFarmPoint">Egg :</p>
-            <p id="eggFarmCost">Cout : </p>
+                <button id="eggFarm" class="button-82-pushable">
+                    <span class="button-82-shadow"></span>
+                    <span class="button-82-edge"></span>
+                    <span class="button-82-front text">
+                        <div id="eggFarmCounter"></div>
+                    </span>
+                </button>
+                <p id="eggFarmPoint">Egg :</p>
+                <p id="eggFarmCost">Cout : </p>
 
-            <button id="claim-btn" class="button-82-pushable">
-                <span class="button-82-shadow"></span>
-                <span class="button-82-edge"></span>
-                <span class="button-82-front text">
-                    reclaim
-                </span>
-            </button>
+                <button id="claim-btn" class="button-82-pushable">
+                    <span class="button-82-shadow"></span>
+                    <span class="button-82-edge"></span>
+                    <span class="button-82-front text">
+                        reclaim
+                    </span>
+                </button>
+            </div>
         </div>
-        <div id="container-ressource" class="container-ressource">
-            <p id="cacao">cacao : 0</p>
-            <p id="wheat">wheat : 0</p>
-            <p id="egg">oeuf : 0</p>
+        <div id="container-ressource" class="container-ressource test_box">
+            <div class="inner">
+                <p id="cacao">cacao : 0</p>
+                <p id="wheat">wheat : 0</p>
+                <p id="egg">oeuf : 0</p>
 
-            <button id="craft" class="iconBtn craft-button" mdTooltipPosition="above" mdTooltip="Sync User" (click)="sync()">
-                <img class="syncRotate" src="img/craft.png" alt="Craft" draggable="false">
-            </button>
+                <button id="craft" class="iconBtn craft-button">
+                    <img class="syncRotate" src="img/craft.png" alt="Craft" draggable="false">
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="rules-popup" class="popup">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <h2>Règles du Jeu</h2>
+            <p>Bienvenue dans Cookie Clicker Minecraft ! Voici les règles du jeu :</p>
+            <ul>
+                <li><strong>Cliquer sur le cookie :</strong> Cliquez sur le cookie pour gagner des points.</li>
+                <li><strong>Améliorations :</strong> Utilisez vos points pour acheter des améliorations telles que des multiplicateurs, des autoclickers, et des fermes (cacao, blé, œuf) pour augmenter votre production de points.</li>
+                <li><strong>Autoclicker :</strong> L'autoclicker clique automatiquement sur le cookie pour vous à intervalles réguliers. Vous pouvez améliorer la vitesse de l'autoclicker.</li>
+                <li><strong>Fermes :</strong> Les fermes produisent des ressources automatiquement. Vous pouvez acheter des fermes de cacao, de blé et d'œufs.</li>
+                <li><strong>Récolte :</strong> Cliquez sur le bouton "reclaim" pour collecter les ressources produites par les fermes.</li>
+                <li><strong>Craft :</strong> Utilisez les ressources collectées pour crafter et gagner des points supplémentaires.</li>
+                <li><strong>Sauvegarde :</strong> Le jeu sauvegarde automatiquement votre progression dans le localStorage.</li>
+                <li><strong>Réinitialisation :</strong> Cliquez sur le bouton "Reset" pour réinitialiser votre progression.</li>
+            </ul>
         </div>
     </div>
     <script src="script2.js"></script>
     <script src="particles.js"></script>
     <script src="app.js"></script>
-    
-    
 </body>
 </html>

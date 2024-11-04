@@ -3,17 +3,17 @@
 ## Description
 Ce projet est une version personnalisée du célèbre jeu Cookie Clicker, avec un thème Minecraft. Le but du jeu est de cliquer sur un cookie pour gagner des points et acheter des améliorations qui augmentent votre production de points.
 
-## Vidéo de Présentation
-<video width="600" controls>
-  <source src="video/cookie_craft.mp4" type="video/mp4">
-  Votre navigateur ne supporte pas la balise vidéo.
-</video>
+![Démonstration du jeu](img/demo.png)
 
 ## Fonctionnalités
 - **Clique sur le cookie** : Cliquez sur le cookie pour gagner des points.
-- **Améliorations** : Achetez des améliorations telles que des multiplicateurs, des autoclickers, et des fermes (cacao, blé, œuf) pour augmenter votre production de points.
+- **Améliorations** : Utilisez vos points pour acheter des améliorations telles que des multiplicateurs, des autoclickers, et des fermes (cacao, blé, œuf) pour augmenter votre production de points.
+- **Autoclicker** : L'autoclicker clique automatiquement sur le cookie pour vous à intervalles réguliers. Vous pouvez améliorer la vitesse de l'autoclicker.
+- **Fermes** : Les fermes produisent des ressources automatiquement. Vous pouvez acheter des fermes de cacao, de blé et d'œufs.
+- **Récolte** : Cliquez sur le bouton "reclaim" pour collecter les ressources produites par les fermes.
+- **Craft** : Utilisez les ressources collectées pour crafter et gagner des points supplémentaires.
 - **Sauvegarde automatique** : Le jeu sauvegarde automatiquement votre progression dans le localStorage.
-- **Réinitialisation** : Réinitialisez votre progression à tout moment.
+- **Réinitialisation** : Cliquez sur le bouton "Reset" pour réinitialiser votre progression.
 
 ## Installation
 1. Clonez le dépôt :
@@ -27,6 +27,7 @@ Ce projet est une version personnalisée du célèbre jeu Cookie Clicker, avec u
 - Utilisez les points pour acheter des améliorations.
 - Les fermes produisent des ressources automatiquement.
 - Cliquez sur le bouton "reclaim" pour collecter les ressources produites par les fermes.
+- Utilisez les ressources collectées pour crafter et gagner des points supplémentaires.
 
 ## Fichiers
 - `index.html` : Contient la structure HTML du jeu.
