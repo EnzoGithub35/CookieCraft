@@ -27,6 +27,7 @@ class Game {
         this.load();
         this.initDOMElements();
         this.loadEvents();
+        this.startBackgroundMusic();
         this.paint();
     }
 
@@ -238,6 +239,8 @@ class Game {
         this.rulesButton = document.getElementById('rules');
         this.rulesPopup = document.getElementById('rules-popup');
         this.closePopup = document.querySelector('.close');
+
+        this.backgroundMusic = document.getElementById('background-music');
   
     }
 
@@ -304,6 +307,10 @@ class Game {
 
     playPickSound() {
         this.pickSound.play();
+    }
+
+    startBackgroundMusic() {
+        this.backgroundMusic.play();
     }
 
     createFallingCookie(isMini = false) {
@@ -373,11 +380,7 @@ class Game {
                 this.startAutoClicker();
                 this.paint();
             } 
-            // if (this.autoClickerInterval <= 50) {
-            //     this.btn_upgradeSpeed.style.display = 'none';
-            //     // this.btn_upgradeSpeed.style.cursor = 'not-allowed';
-            //     // alert("Vous avez atteint la vitesse maximale !");
-            // }
+
 
         } else {
             alert("Vous n'avez pas assez de points pour acheter cette amélioration !");
@@ -391,7 +394,4 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const game = new Game();
     game.startAutoClicker();
 
-
-
-    
 });
