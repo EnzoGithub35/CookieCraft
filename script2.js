@@ -62,7 +62,7 @@ class Game {
         const initialCacaoFarmCost = 10;
         const initialWheatFarmCost = 15;
         const initialEggFarmCost = 20;
-        this.clicks = localStorage.getItem('game.clicks') ? parseInt(localStorage.getItem('game.clicks')) : 9999999;
+        this.clicks = localStorage.getItem('game.clicks') ? parseInt(localStorage.getItem('game.clicks')) : 0;
         this.bonuses.multiplier.nb = localStorage.getItem('game.multiplier') ? parseInt(localStorage.getItem('game.multiplier')) : 1;
         this.bonuses.multiplier.cost = localStorage.getItem('game.multiplierCost') ? parseInt(localStorage.getItem('game.multiplierCost')) : initialMultiplierCost * Math.pow(1.15, this.bonuses.multiplier.nb - 1);
         this.bonuses.autocliquer.nb = localStorage.getItem('game.autocliquer') ? parseInt(localStorage.getItem('game.autocliquer')) : 0;
