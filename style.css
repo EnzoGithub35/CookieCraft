@@ -377,7 +377,6 @@ body {
     font-size: 1rem;
     cursor: pointer;
     transition: transform 0.2s ease, background-color 0.2s ease;
-
 }
 
 .reset-button:hover,
