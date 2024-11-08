@@ -1,5 +1,8 @@
 # Cookie Clicker Minecraft
 
+## En ligne
+Site en ligne sur : [ici](https://enzogithub35.github.io/CookieCraft/).
+
 ## Description
 Ce projet est une version personnalisée du célèbre jeu Cookie Clicker, avec un thème Minecraft. Le but du jeu est de cliquer sur un cookie pour gagner des points et acheter des améliorations qui augmentent votre production de points.
 
