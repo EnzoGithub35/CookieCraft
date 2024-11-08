@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button id="reset" class="reset-button">Reset</button>
-    <button id="rules" class="rules-button">Règles</button>
+
     <div class="grid-container">
         <div class="container-cookie test_box">
             <div class="inner">
@@ -41,7 +40,7 @@
                     <span class="button-82-shadow"></span>
                     <span class="button-82-edge"></span>
                     <span class="button-82-front text">
-                        <div id="autoClickerInterval"></div>
+                        <div style="font-size: 0.2rem;" id="autoClickerInterval"></div>
                     </span>
                 </button>
                 <p id="upgradeSpeedCost"></p>
@@ -118,6 +117,32 @@
             </ul>
         </div>
     </div>
+
+
+    
+
+<div id="info-popup" class="popup">
+    <div class="popup-content">
+        <span class="close-info">&times;</span>
+        <h2>Informations du Jeu</h2>
+        <ul>
+            <li>100 cookies : autocliqueur</li>
+            <li>1000 cookies : farm</li>
+            <li>10000 cookies : amélioration des autocliqueurs</li>
+        </ul>
+        <ul>
+            <li>cacao : 1 par 1</li>
+            <li>wheat : 2 par 2</li>
+            <li>egg : 3 par 3</li>
+        </ul>
+        <p style="font-size: 0.5rem;">ceci n'est pas le vrai craft du cookie</p>
+    </div>
+</div>
+<div class="button-container">
+    <button id="reset" class="reset-button">Reset</button>
+    <button id="rules" class="rules-button">Règles</button>
+    <button id="info" class="info-button">Infos</button>
+</div>
     <script src="script2.js"></script>
     <script src="particles.js"></script>
     <script src="app.js"></script>

@@ -40,6 +40,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 90%;
+    max-width: 80%;
 }
 
 #cookie {
@@ -163,21 +165,7 @@ body {
     outline: none;
 }
 
-.reset-button {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background-color: #8B4513; /* Wood color */
-    color: #FFF;
-    border: none;
-    padding: 1rem 1.5rem;
-    font-size: 1rem;
-    cursor: pointer;
-}
 
-.reset-button:hover {
-    background-color: #A0522D; /* Lighter wood color */
-}
 
 .craft-button {
     display: block;
@@ -304,23 +292,6 @@ body {
     cursor: pointer;
 }
 
-.rules-button {
-    position: absolute;
-    top: calc(1rem + 5rem); /* 1rem pour la marge du bouton Reset + 3rem pour le décalage */
-    right: 0.5rem;
-    background-color: #8B4513; /* Wood color */
-    color: #FFF;
-    border: none;
-    padding: 1rem 1.5rem;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
-.rules-button:hover {
-    background-color: #A0522D; /* Lighter wood color */
-}
-
-
 @media (max-width: 1200px) {
     .test_box {
         flex: 1 1 45%; /* Deux conteneurs par ligne */
@@ -384,5 +355,51 @@ body {
     .craft-button img {
         width: 15vw;
         height: 15vw;
+    }
+}
+
+.button-container {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Espace entre les boutons */
+}
+
+.reset-button,
+.rules-button,
+.info-button {
+    background-color: #8B4513; /* Wood color */
+    color: #FFF;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+
+}
+
+.reset-button:hover,
+.rules-button:hover,
+.info-button:hover {
+    background-color: #A0522D; /* Lighter wood color */
+}
+
+@media (max-width: 768px) {
+    .reset-button,
+    .rules-button,
+    .info-button {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .reset-button,
+    .rules-button,
+    .info-button {
+        padding: 0.6rem 1rem;
+        font-size: 0.6rem;
     }
 }
