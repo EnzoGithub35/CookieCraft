@@ -27,7 +27,6 @@ class Game {
         this.load();
         this.initDOMElements();
         this.loadEvents();
-        this.startBackgroundMusic();
         this.paint();
     }
 
@@ -62,7 +61,7 @@ class Game {
         const initialCacaoFarmCost = 10;
         const initialWheatFarmCost = 15;
         const initialEggFarmCost = 20;
-        this.clicks = localStorage.getItem('game.clicks') ? parseInt(localStorage.getItem('game.clicks')) : 999999;
+        this.clicks = localStorage.getItem('game.clicks') ? parseInt(localStorage.getItem('game.clicks')) : 0;
         this.bonuses.multiplier.nb = localStorage.getItem('game.multiplier') ? parseInt(localStorage.getItem('game.multiplier')) : 1;
         this.bonuses.multiplier.cost = localStorage.getItem('game.multiplierCost') ? parseInt(localStorage.getItem('game.multiplierCost')) : initialMultiplierCost * Math.pow(1.15, this.bonuses.multiplier.nb - 1);
         this.bonuses.autocliquer.nb = localStorage.getItem('game.autocliquer') ? parseInt(localStorage.getItem('game.autocliquer')) : 0;
@@ -239,14 +238,10 @@ class Game {
         this.rulesButton = document.getElementById('rules');
         this.rulesPopup = document.getElementById('rules-popup');
         this.closePopup = document.querySelector('.close');
-
-        this.backgroundMusic = document.getElementById('background-music');
-
-        // this.infoButton = document.getElementById('info');
-        // this.infoPopup = document.getElementById('info-popup');
-        // this.closeInfoPopup = document.querySelector('.close-info');
+        this.infoButton = document.getElementById('info');
+        this.infoPopup = document.getElementById('info-popup');
+        this.closeInfoPopup = document.querySelector('.close-info');
      
-  
     }
 
     loadEvents() {
@@ -302,20 +297,19 @@ class Game {
             this.paint(); 
         });
 
-
-        // this.infoButton.addEventListener('click', () => {
-        //     this.infoPopup.style.display = 'block';
-        // });
+        this.infoButton.addEventListener('click', () => {
+            this.infoPopup.style.display = 'block';
+        });
     
-        // this.closeInfoPopup.addEventListener('click', () => {
-        //     this.infoPopup.style.display = 'none';
-        // });
+        this.closeInfoPopup.addEventListener('click', () => {
+            this.infoPopup.style.display = 'none';
+        });
     
-        // window.addEventListener('click', (event) => {
-        //     if (event.target == this.infoPopup) {
-        //         this.infoPopup.style.display = 'none';
-        //     }
-        // });
+        window.addEventListener('click', (event) => {
+            if (event.target == this.infoPopup) {
+                this.infoPopup.style.display = 'none';
+            }
+        });
     }
     playAnvilSound() {
         this.anvilSound.play();
@@ -327,10 +321,6 @@ class Game {
 
     playPickSound() {
         this.pickSound.play();
-    }
-
-    startBackgroundMusic() {
-        this.backgroundMusic.play();
     }
 
     createFallingCookie(isMini = false) {
@@ -400,7 +390,11 @@ class Game {
                 this.startAutoClicker();
                 this.paint();
             } 
-
+            // if (this.autoClickerInterval <= 50) {
+            //     this.btn_upgradeSpeed.style.display = 'none';
+            //     // this.btn_upgradeSpeed.style.cursor = 'not-allowed';
+            //     // alert("Vous avez atteint la vitesse maximale !");
+            // }
 
         } else {
             alert("Vous n'avez pas assez de points pour acheter cette amélioration !");
@@ -414,4 +408,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const game = new Game();
     game.startAutoClicker();
 
+
+
+    
 });
