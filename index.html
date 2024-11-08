@@ -9,96 +9,96 @@
 <body>
     <button id="reset" class="reset-button">Reset</button>
     <button id="rules" class="rules-button">Règles</button>
+    <!-- <button id="info" class="info-button">Infos</button> -->
     <div class="grid-container">
-        <div class="container-cookie test_box">
-            <div class="inner">
-                <img id="cookie" src="img/cookie.png" alt="Cookie" draggable="false">
-                <p id="counter">0</p>
-            </div>
+        <div class="inner">
+            <img id="cookie" src="img/cookie.png" alt="Cookie" draggable="false">
+            <p id="counter">0</p>
         </div>
-        <div id="falling-cookies-container"></div>
-        <div class="container-upgrade test_box">
-            <div class="inner">
-                <button id="multiplier" class="button-82-pushable">
-                    <span class="button-82-shadow"></span>
-                    <span class="button-82-edge"></span>
-                    <span class="button-82-front text">
-                        <div id="multiplierCounter"></div>
-                    </span>
-                </button>
-                <p id="multiplierCost"></p>
+    </div>
+    <div id="falling-cookies-container"></div>
+    <div class="container-upgrade test_box">
+        <div class="inner">
+            <button id="multiplier" class="button-82-pushable">
+                <span class="button-82-shadow"></span>
+                <span class="button-82-edge"></span>
+                <span class="button-82-front text">
+                    <div id="multiplierCounter"></div>
+                </span>
+            </button>
+            <p id="multiplierCost"></p>
 
-                <button id="autoclicker" class="button-82-pushable">
-                    <span class="button-82-shadow"></span>
-                    <span class="button-82-edge"></span>
-                    <span class="button-82-front text">
-                        <div id="autoclickerCounter"></div>
-                    </span>
-                </button>
-                <p id="autoclickerCost"></p>
+            <button id="autoclicker" class="button-82-pushable">
+                <span class="button-82-shadow"></span>
+                <span class="button-82-edge"></span>
+                <span class="button-82-front text">
+                    <div id="autoclickerCounter"></div>
+                </span>
+            </button>
+            <p id="autoclickerCost"></p>
 
-                <button id="upgradeSpeed" class="button-82-pushable">
-                    <span class="button-82-shadow"></span>
-                    <span class="button-82-edge"></span>
-                    <span class="button-82-front text">
-                        <div id="autoClickerInterval"></div>
-                    </span>
-                </button>
-                <p id="upgradeSpeedCost"></p>
-            </div>
+            <button id="upgradeSpeed" class="button-82-pushable">
+                <span class="button-82-shadow"></span>
+                <span class="button-82-edge"></span>
+                <span class="button-82-front text">
+                    <div id="autoClickerInterval"></div>
+                </span>
+            </button>
+            <p id="upgradeSpeedCost"></p>
         </div>
-        <div id="container-farm" class="container-farm test_box">
-            <div class="inner">
-                <button id="cacaoFarm" class="button-82-pushable">
-                    <span class="button-82-shadow"></span>
-                    <span class="button-82-edge"></span>
-                    <span class="button-82-front text">
-                        <div id="cacaoFarmCounter"></div>
-                    </span>
-                </button>
-                <p id="cacaoFarmPoint">cacao :</p>
-                <p id="cacaoFarmCost">Cout : 5</p>
+    </div>
+    <div id="container-farm" class="container-farm test_box">
+        <div class="inner">
+            <button id="cacaoFarm" class="button-82-pushable">
+                <span class="button-82-shadow"></span>
+                <span class="button-82-edge"></span>
+                <span class="button-82-front text">
+                    <div id="cacaoFarmCounter"></div>
+                </span>
+            </button>
+            <p id="cacaoFarmPoint">cacao :</p>
+            <p id="cacaoFarmCost">Cout : 5</p>
 
-                <button id="wheatFarm" class="button-82-pushable">
-                    <span class="button-82-shadow"></span>
-                    <span class="button-82-edge"></span>
-                    <span class="button-82-front text">
-                        <div id="wheatFarmCounter"></div>
-                    </span>
-                </button>
-                <p id="wheatFarmPoint">Wheat :</p>
-                <p id="wheatFarmCost">Cout : </p>
+            <button id="wheatFarm" class="button-82-pushable">
+                <span class="button-82-shadow"></span>
+                <span class="button-82-edge"></span>
+                <span class="button-82-front text">
+                    <div id="wheatFarmCounter"></div>
+                </span>
+            </button>
+            <p id="wheatFarmPoint">Wheat :</p>
+            <p id="wheatFarmCost">Cout : </p>
 
-                <button id="eggFarm" class="button-82-pushable">
-                    <span class="button-82-shadow"></span>
-                    <span class="button-82-edge"></span>
-                    <span class="button-82-front text">
-                        <div id="eggFarmCounter"></div>
-                    </span>
-                </button>
-                <p id="eggFarmPoint">Egg :</p>
-                <p id="eggFarmCost">Cout :</p>
+            <button id="eggFarm" class="button-82-pushable">
+                <span class="button-82-shadow"></span>
+                <span class="button-82-edge"></span>
+                <span class="button-82-front text">
+                    <div id="eggFarmCounter"></div>
+                </span>
+            </button>
+            <p id="eggFarmPoint">Egg :</p>
+            <p id="eggFarmCost">Cout :</p>
 
-                <button id="claim-btn" class="button-82-pushable">
-                    <span class="button-82-shadow"></span>
-                    <span class="button-82-edge"></span>
-                    <span class="button-82-front text">
-                        reclaim
-                    </span>
-                </button>
-            </div>
+            <button id="claim-btn" class="button-82-pushable">
+                <span class="button-82-shadow"></span>
+                <span class="button-82-edge"></span>
+                <span class="button-82-front text">
+                    reclaim
+                </span>
+            </button>
         </div>
-        <div id="container-ressource" class="container-ressource test_box">
-            <div class="inner">
-                <p id="cacao">cacao : 0</p>
-                <p id="wheat">wheat : 0</p>
-                <p id="egg">oeuf : 0</p>
+    </div>
+    <div id="container-ressource" class="container-ressource test_box">
+        <div class="inner">
+            <p id="cacao">cacao : 0</p>
+            <p id="wheat">wheat : 0</p>
+            <p id="egg">oeuf : 0</p>
 
-                <button id="craft" class="iconBtn craft-button">
-                    <img class="syncRotate" src="img/craft.png" alt="Craft" draggable="false">
-                </button>
-            </div>
+            <button id="craft" class="iconBtn craft-button">
+                <img class="syncRotate" src="img/craft.png" alt="Craft" draggable="false">
+            </button>
         </div>
+    </div>
     </div>
 
     <div id="rules-popup" class="popup">
@@ -118,12 +118,28 @@
             </ul>
         </div>
     </div>
+
+    <!-- <div id="info-popup" class="popup">
+        <div class="popup-content">
+            <span class="close-info">&times;</span>
+            <h2>Informations du Jeu</h2>
+            <ul>
+                <li>100 cookies : autocliqueur</li>
+                <li>1000 cookies : farm</li>
+                <li>10000 cookies : amélioration des autocliqueurs</li>
+            </ul>
+            <ul>
+                <li>cacao : 1 par 1</li>
+                <li>wheat : 2 par 2</li>
+                <li>egg : 3 par 3</li>
+            </ul>
+            <p style="font-size: 0.5rem;">ceci n'est pas le vrai craft du cookie</p>
+        </div>
+    </div> -->
+
     <audio id="background-music" src="music/music.mp3" loop></audio>
     <script src="script2.js"></script>
     <script src="particles.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
-
-
-git push https://<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>@github.com/EnzoGithub35/CookieCraft.git main

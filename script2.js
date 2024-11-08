@@ -62,7 +62,7 @@ class Game {
         const initialCacaoFarmCost = 10;
         const initialWheatFarmCost = 15;
         const initialEggFarmCost = 20;
-        this.clicks = localStorage.getItem('game.clicks') ? parseInt(localStorage.getItem('game.clicks')) : 0;
+        this.clicks = localStorage.getItem('game.clicks') ? parseInt(localStorage.getItem('game.clicks')) : 999999;
         this.bonuses.multiplier.nb = localStorage.getItem('game.multiplier') ? parseInt(localStorage.getItem('game.multiplier')) : 1;
         this.bonuses.multiplier.cost = localStorage.getItem('game.multiplierCost') ? parseInt(localStorage.getItem('game.multiplierCost')) : initialMultiplierCost * Math.pow(1.15, this.bonuses.multiplier.nb - 1);
         this.bonuses.autocliquer.nb = localStorage.getItem('game.autocliquer') ? parseInt(localStorage.getItem('game.autocliquer')) : 0;
@@ -241,6 +241,11 @@ class Game {
         this.closePopup = document.querySelector('.close');
 
         this.backgroundMusic = document.getElementById('background-music');
+
+        // this.infoButton = document.getElementById('info');
+        // this.infoPopup = document.getElementById('info-popup');
+        // this.closeInfoPopup = document.querySelector('.close-info');
+     
   
     }
 
@@ -296,6 +301,21 @@ class Game {
             this.reduceAutoClickerInterval(); 
             this.paint(); 
         });
+
+
+        // this.infoButton.addEventListener('click', () => {
+        //     this.infoPopup.style.display = 'block';
+        // });
+    
+        // this.closeInfoPopup.addEventListener('click', () => {
+        //     this.infoPopup.style.display = 'none';
+        // });
+    
+        // window.addEventListener('click', (event) => {
+        //     if (event.target == this.infoPopup) {
+        //         this.infoPopup.style.display = 'none';
+        //     }
+        // });
     }
     playAnvilSound() {
         this.anvilSound.play();
